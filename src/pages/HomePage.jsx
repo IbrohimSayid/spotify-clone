@@ -2,16 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChevronLeft, ChevronRight, Bell, User, Play, Pause, Heart, Loader } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { 
-  fetchAccessToken, 
-  fetchChillMix, 
-  fetchPopMix, 
-  fetchIndieMix, 
-  fetchDailyMix, 
-  fetchDailyMix2, 
-  fetchRockMix, 
-  setCurrentPlaylist, 
-  setCurrentTrack, 
+import {
+  fetchAccessToken,
+  fetchChillMix,
+  fetchPopMix,
+  fetchIndieMix,
+  fetchDailyMix,
+  fetchDailyMix2,
+  fetchRockMix,
+  setCurrentPlaylist,
+  setCurrentTrack,
   setIsPlaying,
   toggleLike,
   fetchFeaturedPlaylists,
@@ -23,12 +23,8 @@ import MusicControlPanel from '../components/MusicControlPanel';
 const MusicLoader = () => (
   <div className="flex items-center justify-center h-screen bg-black">
     <div className="flex space-x-2">
-      {[1, 2, 3].map((i) => (
-        <div
-          key={i}
-          className="w-3 h-8 bg-green-500 rounded-full animate-pulse"
-          style={{ animationDelay: `${i * 0.15}s` }}
-        ></div>
+      {[1,].map((i) => (
+        <div key={i} class="w-12 h-12 rounded-full animate-spin border-x-4 border-solid border-green-500 border-t-transparent"></div>
       ))}
     </div>
   </div>
@@ -37,20 +33,20 @@ const MusicLoader = () => (
 const HomePage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { 
-    accessToken, 
-    chillMix, 
-    popMix, 
-    indieMix, 
-    DailyMix, 
-    DailyMix2, 
-    RockMix, 
-    loading, 
-    error, 
-    currentTrack, 
+  const {
+    accessToken,
+    chillMix,
+    popMix,
+    indieMix,
+    DailyMix,
+    DailyMix2,
+    RockMix,
+    loading,
+    error,
+    currentTrack,
     isPlaying,
     likedSongs,
-    featuredPlaylists 
+    featuredPlaylists
   } = useSelector((state) => state.spotify);
   const audioRef = useRef(null);
 
@@ -88,13 +84,13 @@ const HomePage = () => {
 
   return (
     <div className="bg-gradient-to-b from-indigo-900 to-black text-white p-8 overflow-y-auto h-screen">
-      <MainContent 
-        chillMix={chillMix} 
-        popMix={popMix} 
-        indieMix={indieMix} 
-        DailyMix={DailyMix} 
-        DailyMix2={DailyMix2} 
-        RockMix={RockMix} 
+      <MainContent
+        chillMix={chillMix}
+        popMix={popMix}
+        indieMix={indieMix}
+        DailyMix={DailyMix}
+        DailyMix2={DailyMix2}
+        RockMix={RockMix}
         currentTrack={currentTrack}
         isPlaying={isPlaying}
         likedSongs={likedSongs}
@@ -108,7 +104,7 @@ const HomePage = () => {
 const MainContent = ({ chillMix, popMix, indieMix, DailyMix, DailyMix2, RockMix }) => (
   <div className="flex-1 overflow-y-auto p-8">
     <TopBar />
-    
+
     <h1 className="text-3xl font-bold mb-6">Good afternoon</h1>
     <div className="grid grid-cols-2 gap-4 mb-8">
       <MixCard title="Chill Mix" playlist={chillMix[0]} />
@@ -210,8 +206,8 @@ const PlaylistCard = ({ playlist }) => {
     <div onClick={handleClick} className="bg-[#181818] p-4 rounded-md cursor-pointer hover:bg-[#282828] transition-all duration-200 group">
       <div className="relative mb-4">
         <img src={playlist.images[0]?.url || `/api/placeholder/160/160`} alt={playlist.name} className="w-full aspect-square object-cover rounded-md shadow-lg" />
-        <button 
-          onClick={handlePlayPause} 
+        <button
+          onClick={handlePlayPause}
           className="absolute bottom-2 right-2 bg-green-500 rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg"
         >
           {currentTrack?.id === playlist.id && isPlaying ? (
@@ -223,7 +219,7 @@ const PlaylistCard = ({ playlist }) => {
       </div>
       <h3 className="font-semibold mb-1 truncate">{playlist.name}</h3>
       <p className="text-sm text-gray-400 truncate">{playlist.description}</p>
-      <button 
+      <button
         onClick={handleLike}
         className="mt-2 text-gray-400 hover:text-white"
       >
