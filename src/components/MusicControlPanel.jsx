@@ -122,7 +122,7 @@ export default function MusicControlPanel() {
           )}
         </div>
 
-        {/* Playback Controls */}
+        
         <div className="flex flex-col items-center space-y-2">
           <div className="flex items-center space-x-4">
             <button onClick={handleShuffleToggle} className={`hover:text-white ${shuffle ? 'text-[#1ed760]' : 'text-gray-400'}`}>
